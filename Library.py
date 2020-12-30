@@ -2,9 +2,11 @@ import threading
 from threading import*
 import time
 d={}
+
+#creation of key in datastore
 def create(key,value,timeout=0):
     if key in d:
-        print("error : This key already exists in data store")
+        print("error : This key already exists in data ")
     else:
         if(key.isalpha()):
             if((len(d)<1024*1024*1024)and(value<=16*1024*1024)):
@@ -20,6 +22,7 @@ def create(key,value,timeout=0):
         else:
             print("error: invalid key name")
 
+#reading the key present in datastore
 def read(key):
     if key not in d:
         print("error: invalid key")
@@ -35,6 +38,7 @@ def read(key):
             else:
                 print("error: Time to live of key has expired")
 
+#deletion of key present in datastore
 def delete(key):
     if key not in d:
         print("error: Invalid key")
@@ -50,6 +54,7 @@ def delete(key):
              else:
                 print("error: Time to live of key has expired")
 
+#modifying key_value in datastore
 def modify(key,value):
     if key not in d:
         print("error: Invalid key")
