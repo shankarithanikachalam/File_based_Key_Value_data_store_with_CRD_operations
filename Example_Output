@@ -1,0 +1,27 @@
+>>> import Library as s
+>>> s.create('a',1)
+This key is created
+>>> s.read('a')
+'a:1'
+>>> s.modify('a',10)
+This key is modified
+>>> s.delete('a')
+This key is deleted
+>>> s.read('a')
+error: invalid key
+>>> s.create('a',5,20)
+This key is created
+>>> s.read('a')
+'a:5'
+>>> s.read('a')
+error: Time to live of key has expired
+>>> t=Thread(target=(create),args=("a",3,25))
+>>> t.start()
+This key is created
+>>> 
+t1=Thread(target=(read),args=('a'))
+>>> t1.start()
+error: Time to live of key has expired
+>>> t=Thread(target=(create),args=('m',4,3200))
+>>> t.start()
+This key is created
